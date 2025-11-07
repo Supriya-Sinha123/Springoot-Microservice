@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" name="MyApp">
+  
+  
+  <Loggers>
+    <Root level="debug">
+      <AppenderRef ref="RollingFile"/>
+      <!--<AppenderRef ref="Console" />-->
+      <AppenderRef ref="MAIN"/>
+    </Root>
+  </Loggers>
+  
+
+  
+  <Appenders>
+  
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d %p %m%n"/>
+    </Console>
+    
+    <File name="MAIN" fileName="logs/main.log"> 
+      <PatternLayout pattern="%d [%t] %p %c - %m%n"/>
+    </File>
+   
+    
+    <!--
+    <File name="MAIN" fileName="logs/main.log"> 
+      <JsonTemplateLayout/>
+    </File>
+    -->
+    
+    
+    <RollingFile name="RollingFile" fileName="F:/logs/app.log"
+                 filePattern="F://logs//$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+      <PatternLayout>
+        <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+      </PatternLayout>
+      
+      
+      <Policies>
+        <TimeBasedTriggeringPolicy />
+        <SizeBasedTriggeringPolicy size="1 kb"/>
+      </Policies>
+      
+    </RollingFile>
+
+    
+  </Appenders>
+  
+  
+
+  
+</Configuration>
+
+
+
+
+

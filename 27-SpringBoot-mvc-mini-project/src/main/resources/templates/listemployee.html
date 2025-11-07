@@ -1,0 +1,74 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Employees List</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+		<script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
+	</head>
+	
+	<body>
+		
+		<div class="row">
+					
+					<div style="margin-left: 30px; margin-right: 30px;">
+						
+						<div style="display: flex; justify-content: space-between; align-items: center;">
+							<div><h1 style="color: brown;">Employees List</h1></div>
+							
+							<div>
+								<a th:href="@{/listemployee}" class="btn btn-danger btn-lg">Home</a>
+								<a th:href="@{/employee}" class="btn btn-danger btn-lg">Register</a>
+								<a th:href="@{/logout}" class="btn btn-danger btn-lg">Logout</a>
+							</div>
+						</div>
+			
+				<!--		<h1 style="color: brown;">Employees List</h1>
+						<button type="submit" value="submit" class="btn btn-danger btn-lg">Logout</button>
+						-->
+						
+						<div class="alert alert-danger" style="margin-right: 20%" th:if="${msg}">
+							<strong><p th:text="${msg}"></p></strong>
+						</div>
+						
+						<table class="table table-hover" id="myTable">
+							<thead style="background-color: saddlebrown;">
+								<tr>
+									<th>Id</th>
+									<th>FirstName</th>
+									<th>LastName</th>
+									<th>Email</th>
+									<th>Password</th>
+									<th>Gender</th>
+									<th>Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="employee:${listemployee}">
+									<td th:text="${employee.id}"></td>
+									<td th:text="${employee.firstName}"></td>
+									<td th:text="${employee.lastName}"></td>
+									<td th:text="${employee.email}"></td>
+									<td th:text="${employee.password}"></td>
+									<td th:text="${employee.gender}"></td>
+									
+									<td>
+									    <a th:href="@{'/editemployee/'+${employee.id}}" class="btn btn-warning btn-sm">Edit</a>
+										<a th:href="@{'/deleteemployee/'+${employee.id}}" class="btn btn-info btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+				</div>
+		
+	</body>
+	
+	<script>
+		new DataTable('#myTable');
+	</script>
+	
+</html>

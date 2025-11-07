@@ -1,0 +1,58 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Product registeration page</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+		<script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
+	</head>
+	
+	<body>
+		<div class="row">
+			
+			<div style="margin-left: 30px; margin-right: 30px;">
+				<h1 style="color: orangered;">Product List</h1>
+				
+				<table class="table table-hover" id="myTable">
+					<thead style="background-color: darkorange;">
+						<tr>
+							<th>Id</th>
+							<th>Name</th>
+							<th>Brand</th>
+							<th>Price</th>
+							<th>Warrnaty</th>
+							<th>Quantity</th>
+							<th>MFD</th>
+							<th>Type</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="product:${listProduct}">
+							<td th:text="${product.id}"></td>
+							<td th:text="${product.name}"></td>
+							<td th:text="${product.brand}"></td>
+							<td th:text="${product.price}"></td>
+							<td th:text="${product.warrnaty}"></td>
+							<td th:text="${product.quantity}"></td>
+							<td th:text="${product.mfd}"></td>
+							<td th:text="${product.type}"></td>
+							<td>
+								<a th:href="@{'/edit/'+${product.id}}" class="btn btn-warning btn-sm">Edit</a>
+								<a th:href="@{'/delete/'+${product.id}}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
+							</td>
+							
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+		</div>
+	</body>
+	
+	<script>
+		new DataTable('#myTable');
+	</script>
+</html>

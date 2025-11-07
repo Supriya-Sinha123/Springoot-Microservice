@@ -1,0 +1,79 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Employee Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    <style>
+        /* Custom navbar styling */
+        .custom-navbar {
+            background-color: brown !important;
+            border-color: brown !important;
+        }
+        .custom-navbar .navbar-brand,
+        .custom-navbar .nav > li > a {
+            color: white !important;
+        }
+        .custom-navbar .navbar-brand:hover {
+            color: white !important;
+            background-color: transparent !important;
+        }
+        .custom-navbar .nav > li > a:hover {
+            background-color: #61080c!important; /* darker brown on hover */
+            color: white !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 🔹 Navbar -->
+	<nav class="navbar navbar-inverse custom-navbar">
+	    <div class="container-fluid d-flex justify-content-between align-items-center">
+
+	        <!-- App Name -->
+	        <a class="navbar-brand no-hover">EmployeeApp</a>
+
+	        <!-- Menu Buttons -->
+	        <ul class="nav navbar-nav navbar-right d-flex">
+	            <li><a th:href="@{/login}"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+	            <li><a th:href="@{/employee}"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+	            <li><a th:href="@{/logout}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+	        </ul>
+	    </div>
+	</nav>
+
+    <!-- 🔹 Page Content -->
+    <div>
+        <div class="col-md-3"></div>
+
+        <div class="col-md-6" style="background-color: bisque; padding-bottom: 20px; margin-top: 50px;">
+            <div>
+                <h1 style="color: brown;">Login</h1>
+            </div>
+
+            <!-- Error Message -->
+            <div class="alert alert-danger" style="margin-right: 20%" th:if="${msg}">
+                <strong><p th:text="${msg}"></p></strong>
+            </div>
+
+            <!-- Login Form -->
+            <form th:action="@{/login}" th:object="${login}" method="post">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" th:field="*{email}" class="form-control" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" th:field="*{password}" class="form-control" placeholder="Password">
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+            </form>
+        </div>
+
+        <div class="col-md-3"></div>
+    </div>
+
+</body>
+</html>
